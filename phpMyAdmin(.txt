@@ -1,0 +1,229 @@
+CREATE TABLE test(
+	id INT NOT NULL,
+	bio VARCHAR (36)
+	PRIMARY KEY (id)
+);
+
+-------
+CREATE TABLE orders2(
+	id INT NOT NULL AUTO_INCREMENT,
+	orderNum INT,
+    shopId INT,
+    personId INT,
+    date_time DATETIME DEFAULT CURRENT_TIMESTAMP,                 
+	PRIMARY KEY (id),
+    FOREIGN KEY(shopId) REFERENCES shop(id),
+    FOREIGN KEY(personId) REFERENCES people(id)
+);
+// DEFAULT CURRENT_TIMESTAMP - время добавления
+// FOREIGN KEY(personId) REFERENCES people(id)  - ссылки на 
+
+--------------------------------
+
+INSERT INTO table_article (id, bio, email)
+	VALUES
+	(1, '....', 'text'),
+	(2, '....1', 'text1'),
+	(3, '....2', 'text2');
+
+
+--------------------------------
+ALTER TABLE table_article ADD email VARCHAR (32); добавить имя значение
+--------------------------------
+ALTER TABLE table_article DROP COLUMN (...поле); удалить
+--------------------------------
+
+INSERT INTO table_article () VALUES()  id не прописываю(он возрастает инкремент вроде)  добавление
+--------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+UPDATE `table_article` SET `name` = 'Лёня' WHERE id = 5;  обновление данных
+UPDATE `table_article` SET `bio`='gogi_gogi',`url`='go-go' WHERE name = 'Жора';
+UPDATE `table_article` SET `bio`='gogi_gogi',`url`='go-go' WHERE id > 4;
+--------------------------------------------------------------------------------
+
+DELETE FROM `table_article` WHERE id
+-----------------------------------
+DELETE FROM `table_article` удалить всю таблицу
+------------------------------------
+TRUNCATE `table_article`;   очистить таблицу
+----------------------------------
+DROP.................
+---------------------------------
+
+
+SELECT * FROM `table_article` выбрать всё
+--------------------------------
+SELECT `name`, `bio` FROM `table_article`  выбрать только
+------------------------------------
+SELECT `id`, `name`, `bio`, `url`, `email` FROM `table_article` WHERE id >= 3 AND id < 8
+-----------------------------------
+
+<> не равно
+------------------------------------
+<>5 AND <>9 AND name = 'Иван' AND bio is NULL  (IS NOT NULL)
+---------------------------------
+
+
+SELECT * FROM `table_article` WHERE name 'Ivan' OR id = 4 (или)
+-----------------------------------------------------------------
+SELECT DISTINCT name FROM table_article   не повторяются
+--------------------------------------------------------------------
+SELECT * FROM `table_article` LIMIT 2  вывел только две строки
+----------------------------------------------------------------------
+SELECT * FROM `table_article` LIMIT 2, 3       два элем пропустили три вывели
+---------------------------------------------------------------------
+SELECT * FROM `table_article` ORDER BY id... LIMIT 2, 3   сортировка данных(LIMIT В КОНЦЕ)
+-------------------------------------------------------------------
+SELECT * FROM `table_article` ORDER BY id DESC LIMIT 2, 4 по убыванию
+------------------------------------------------------------
+SELECT * FROM `table_article` WHERE id BETWEEN 2 AND 4 AND ID <> 4 ORDER BY id DESC LIMIT 5;   ДИапазаон от 2 до 4
+---------------------------------------------------------------
+SELECT * FROM `table_article` WHERE id IN (7, 8, 1) ORDER BY id DESC LIMIT 3  В ТАКОМ ПОРЯДКЕ
+-------------------------------------------------------------------
+SELECT * FROM `table_article` WHERE name LIKE 'Г%'   % либые дальше буквы (начинается с Г)
+------------------------------------------------------------
+SELECT * FROM `table_article` WHERE name LIKE '%и%' 
+-------------------------------------------------------------
+SELECT * FROM `table_article` WHERE name LIKE '%и'
+--------------------------------------------------------
+
+индекс
+------
+CREATE INDEX niNDEX ON table_article (name); добавить  (быстрее поиск по полю)
+---------------------------------------------
+DROP INDEX niNDEX ON table_article              удалить
+--------------------------------------------------------
+
+продажа
+-------
+INSERT INTO `orders3`(`orderNum`, `shopId`, `personId` 
+                      VALUES 
+                      (0001, 2, 7)
+------------------------------------------------------- 
+
+обьединение
+--------
+SELECT orders3.orderNum, table_article.name, table_article.email FROM table_article
+INNER JOIN orders3 ON table_article.id = orders3.personId
+
+--
+SELECT shop.title, table_article.name, table_article.email FROM table_article
+INNER JOIN orders3 ON table_article.id = orders3.personId
+INNER JOIN shop ON shop.id = orders3.shopId
+
+
+//INNER JOIN - позволяет проверить данные orders3 и table_article
+----------------------
+
+LEFT
+----
+SELECT table_article.name, orders3.orderNum FROM table_article 
+LEFT JOIN orders3 ON table_article.id = orders3.personId 
+ORDER BY table_article.name;
+
+RIGHT
+-----
+
+SELECT table_article.name, orders3.date_time FROM orders3
+RIGHT JOIN table_article ON orders3.personId =  table_article.id
+ORDER BY table_article.name;
+----------------------
+
+
+
+#8 Псевдонимы, функции и Group By (Гоша Дударь)
+
+
+1)Псевдонимы
+
+SELECT `name` AS 'Имя',email AS 'Почта' FROM table_article
+-----
+
+обьединение псевдоним для полей 
+----
+SELECT CONCAT ('Имя: ', name, '. Почта: ', email) AS 'Информация' FROM table_article;
+-------------------------------------------------------------------------------------
+
+обьединение псевдоним для названия таблиц(это НЕ обьедин данных !!!!!)
+-----
+SELECT p.id, p.name, s.title, s.price FROM `table_article` AS p, shop AS s
+----------------------------------------------------------------------------
+
+
+
+2) функции
+
+SELECT COUNT(id) FROM shop               //6
+--------------------------
+
+SELECT MIN(price) FROM shop;             //30 ?
+---------------------------
+
+SELECT MAX(price) FROM shop;              //1000
+---------------------------
+
+SELECT AVG(price) FROM shop;             //38.32565
+---------------------------
+
+SELECT SUM(price) FROM shop;             //2290
+----------------------------
+
+SELECT UCASE(price) FROM shop          //верний регистр
+---
+SELECT LUCASE(title) FROM shop         //нижний 
+--------------------------------
+
+
+3) Group By
+
+SELECT price, COUNT(price) AS 'Количество' FROM shop GROUP BY price;
+--------------------------------------------------------------------
+
+SELECT price, COUNT(price) AS 'Количество' FROM shop GROUP BY price HAVING COUNT(price) > 1;
+--------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

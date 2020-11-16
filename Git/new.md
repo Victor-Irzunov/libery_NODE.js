@@ -1,3 +1,3 @@
 # Git and Github kurs
 
-Crash course
+Crash course my live

@@ -1,0 +1,52 @@
+<nav>
+	<div class="nav-wrapper">
+		<a href="/" class="brand-logo">Приложение</a>
+
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+			{{#if isHome }}
+			<li class="active"><a href="/">Главная</a></li>
+			{{else}}
+			<li><a href="/">Главная</a></li>
+			{{/if}}
+
+			{{#if isKurs}}
+			<li class="active"><a href="/kurs">Курс</a></li>
+			{{else}}
+			<li><a href="/kurs">Курс</a></li>
+			{{/if}}
+
+			{{#if isAuth}} {{!№52 - Добавление сессии}}
+
+			{{#if isAdd}}
+			<li class="active"><a href="/add">Добавить Курс</a></li>
+			{{else}}
+			<li><a href="/add">Добавить Курс</a></li>
+			{{/if}}
+
+			{{#if isCard}}
+			<li class="active"><a href="/card">Корзина</a></li>
+			{{else}}
+			<li><a href="/card">Корзина</a></li>
+			{{/if}}
+
+			{{!-- №48 - Подготовка страницы заказов --}}
+			{{#if isOrder}}
+			<li class="active"><a href="/orders">Заказы</a></li>
+			{{else}}
+			<li><a href="/orders">Заказы</a></li>
+			{{/if}}
+
+			<li><a href="/auth/logout">Выйти</a></li>
+
+			{{else}}
+			{{!-- //№51 - Страница логина --}}
+			{{#if isLogin}}
+			<li class="active"><a href="/auth/login#login">Войти</a></li> {{!#login не обязательно}}
+			{{else}}
+			<li><a href="/auth/login#login">Войти</a></li>
+			{{/if}}
+			{{/if}}
+
+		</ul>
+	</div>
+</nav>

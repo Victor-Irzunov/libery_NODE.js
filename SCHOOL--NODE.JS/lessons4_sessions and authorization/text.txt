@@ -1,0 +1,6 @@
+npm i -D nodemon                  //-D devDependencies зависимость для разработки
+если на Ubuntu надо писать sudu npm ...
+Cannot GET /     браузер не можует получить корневой роут
+ф-ция next продолжает выполнение других 
+по умолчанию -S
+https://gabrieleromanato.name/nodejs-how-to-create-an-e-commerce-shopping-cart

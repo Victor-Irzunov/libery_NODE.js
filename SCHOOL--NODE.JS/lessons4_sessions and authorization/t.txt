@@ -1,0 +1,13 @@
+https://materializecss.com/getting-started.html
+npm init -y                                               №18 - Настройка приложения
+npm i express                                             №18 - Настройка приложения
+npm i -D nodemon           -D("devDependencies")          №18 - Настройка приложения
+npm i express-handlebars                                  №20 - Подключение Handlebars
+npm i @handlebars/allow-prototype-access                  сам искал
+npm i uuid                 генерирует интересные id       №26 - Создание модели
+npm i mongoose       --save(либо -S)
+npm i express-session                               №52 - Добавление сессии
+npm i connect-mongodb-session                             №54 - Сессия в базе данных
+npm i bcryptjs                                      №59 - Шифрование пароля
+npm i csurf                                         №60 - Добавление CSRF-защит  будет защищать весь фронтенд и сравнивать с опред перем
+npm i connect-flash                                       №61 - Сообщения об ошибке
